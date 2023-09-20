@@ -1,0 +1,7 @@
+sku,prod_name,description,warehouse_num
+'SKU1','Product1','DESC1',123
+'SKU2','Product2','DESC2',125
+'SKU3','Product3','DESC3',123
+'SKU4','Product4','DESC4',126
+'SKU5','Product5','DESC5',123
+'SKU6','Product6','DESC6',127

@@ -1,13 +1,19 @@
-version: '2'
+version: '3'
+
 services:
+
   cloudera:
     image: cloudera/quickstart:latest
+    container_name: Cloudera
     privileged: true
     hostname: quickstart.cloudera
     command: /usr/bin/docker-quickstart
+    stdin_open: true # keep process stdin open awaiting connect (keeps cloudera running)
+    tty: true # specifies that stdin should be a terminal
     ports:
+      - 80:80       # quickstart
       - 8020:8020   # HDFS 
-      - 8022:22     # SSH
+      - 22:22       # SSH
       - 7180:7180   # Cloudera Manager
       - 8888:8888   # Hue
       - 11000:11000 # Oozie
@@ -25,8 +31,12 @@ services:
       - 9090:9090   # HBase Thrift
       - 8080:8080   # HBase Rest
       - 7077:7077   # Spark Master
-#    tty: true
-#    stdin_open: true
+    deploy: 
+      resources:
+        limits:
+          memory: 30G
+        reservations:
+          memory: 20G
+
     volumes: 
-#      - /data:/var/shared_cloudera_quickstart:/media/shared_from_local
-      - ./data:/var/shared_cloudera_quickstart
+      - ./data:/home/cloudera/workspace/dev01

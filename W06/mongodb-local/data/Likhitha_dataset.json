@@ -1,0 +1,72 @@
+[
+    {
+        "food_id": 1,
+        "food_name": "Pizza",
+        "category": "Italian",
+        "calories": 285,
+        "price_usd": 10.99
+    },
+    {
+        "food_id": 2,
+        "food_name": "Sushi",
+        "category": "Japanese",
+        "calories": 200,
+        "price_usd": 15.99
+    },
+    {
+        "food_id": 3,
+        "food_name": "Quesadilla",
+        "category": "Mexican",
+        "calories": 500,
+        "price_usd": 12.89
+    },
+    {
+        "food_id": 4,
+        "food_name": "Quesadilla",
+        "category": "Mexican",
+        "calories": 650,
+        "price_usd": 14.99
+    },
+    {
+        "food_id": 5,
+        "food_name": "Sushi",
+        "category": "Japanese",
+        "calories": 180,
+        "price_usd": 14.99
+    },
+    {
+        "food_id": 6,
+        "food_name": "Taco",
+        "category": "Mexican",
+        "calories": 300,
+        "price_usd": 7.99
+    },
+    {
+        "food_id": 7,
+        "food_name": "Pizza",
+        "category": "Italian",
+        "calories": 400,
+        "price_usd": 11.99
+    },
+    {
+        "food_id": 8,
+        "food_name": "Sushi",
+        "category": "Japanese",
+        "calories": 220,
+        "price_usd": 16.99
+    },
+    {
+        "food_id": 9,
+        "food_name": "Taco",
+        "category": "Mexican",
+        "calories": 310,
+        "price_usd": 11.99
+    },
+    {
+        "food_id": 10,
+        "food_name": "Pizza",
+        "category": "Italian",
+        "calories": 350,
+        "price_usd": 13.99
+    }
+]

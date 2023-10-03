@@ -1,0 +1,38 @@
+Often, the file doesn't have a nice indentation when working with JSON. this makes reading large JSON files difficult. 
+
+VSCode has a keyboard shortcut that can help us with this. Shift-Alt-F (on mac, it's Shift-Option-F)
+
+For instance, if we had this...
+
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"twitter.tweets"},{"v":1,"key":{"_fts":"text","_ftsx":1},"name":"text_text","ns":"twitter.tweets","default_language":"turkish","weights":{"text":1},"language_override":"language","textIndexVersion":2}]}
+
+We can turn it into this...
+
+{
+    "options": {},
+    "indexes": [
+        {
+            "v": 1,
+            "key": {
+                "_id": 1
+            },
+            "name": "_id_",
+            "ns": "twitter.tweets"
+        },
+        {
+            "v": 1,
+            "key": {
+                "_fts": "text",
+                "_ftsx": 1
+            },
+            "name": "text_text",
+            "ns": "twitter.tweets",
+            "default_language": "turkish",
+            "weights": {
+                "text": 1
+            },
+            "language_override": "language",
+            "textIndexVersion": 2
+        }
+    ]
+}

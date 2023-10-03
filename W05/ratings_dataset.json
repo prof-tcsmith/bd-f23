@@ -1,0 +1,102 @@
+[
+    {
+        "jewel_name": "bracelet",
+        "rating": 6,
+        "jewel_material": "silver"
+    },
+    {
+        "jewel_name": "anklet",
+        "rating": 5,
+        "jewel_material": "diamond"
+    },
+    {
+        "jewel_name": "anklet",
+        "rating": 6,
+        "jewel_material": "platinum"
+    },
+    {
+        "jewel_name": "anklet",
+        "rating": 5,
+        "jewel_material": "silver"
+    },
+    {
+        "jewel_name": "ring",
+        "rating": 6,
+        "jewel_material": "titanium"
+    },
+    {
+        "jewel_name": "anklet",
+        "rating": 8,
+        "jewel_material": "diamond"
+    },
+    {
+        "jewel_name": "bracelet",
+        "rating": 8,
+        "jewel_material": "diamond"
+    },
+    {
+        "jewel_name": "necklace",
+        "rating": 6,
+        "jewel_material": "titanium"
+    },
+    {
+        "jewel_name": "anklet",
+        "rating": 1,
+        "jewel_material": "diamond"
+    },
+    {
+        "jewel_name": "ring",
+        "rating": 9,
+        "jewel_material": "gold"
+    },
+    {
+        "jewel_name": "earring",
+        "rating": 10,
+        "jewel_material": "diamond"
+    },
+    {
+        "jewel_name": "ring",
+        "rating": 10,
+        "jewel_material": "diamond"
+    },
+    {
+        "jewel_name": "ring",
+        "rating": 4,
+        "jewel_material": "silver"
+    },
+    {
+        "jewel_name": "anklet",
+        "rating": 6,
+        "jewel_material": "platinum"
+    },
+    {
+        "jewel_name": "ring",
+        "rating": 10,
+        "jewel_material": "gold"
+    },
+    {
+        "jewel_name": "ring",
+        "rating": 2,
+        "jewel_material": "diamond"
+    },
+    {
+        "jewel_name": "anklet",
+        "rating": 7,
+        "jewel_material": "platinum"
+    },
+    {
+        "jewel_name": "earring",
+        "rating": 3,
+        "jewel_material": "diamond"
+    },
+    {
+        "jewel_name": "earring",
+        "rating": 6,
+        "jewel_material": "gold"
+    },
+    {
+        "jewel_name": "necklace",
+        "rating": 7,
+        "jewel_material": "gold"
+    }
+]

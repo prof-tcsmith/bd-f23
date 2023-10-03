@@ -1,0 +1,7 @@
+SKU,name,description,warehouse_num,
+'CK100','Prod1','desc1',100
+'CK101','Prod2','desc2',100
+'CK102','Prod3','desc3',101
+'CK103','Prod4','desc4',102
+
+

@@ -1,0 +1,5 @@
+song_id,title,duration,genre
+1,'A',180,'pop'
+2,'B',100,'rock'
+3,'C',170,'classical'
+4,'D',200,'country'

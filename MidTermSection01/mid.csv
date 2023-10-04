@@ -1,0 +1,7 @@
+song_id, title, duration, genre
+1, 'break-up', 4, 'rock'
+2, 'lingdi', 3, 'pop'
+3, 'krishna', 4, 'classical'
+4, 'loveit', 6, classical'
+5, 'driver', 4, 'country'
+6, 'school', 5, 'rock'

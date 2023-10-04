@@ -29,7 +29,7 @@ INSERT INTO w04.student (student_id, f_name, l_name, course, grade)
 INSERT INTO w04.student (student_id, f_name, l_name, course, grade)     
     VALUES (202,'Sandy', 'Williams', 'ISM6136', 86);
 INSERT INTO w04.student (student_id, f_name, l_name, course, grade)     
-    VALUES (202,'Jane', 'Hollister', 'ISM6562', 78)
+    VALUES (202,'Jane', 'Hollister', 'ISM6562', 78);
 INSERT INTO w04.student (student_id, f_name, l_name, course, grade)     
     VALUES (202,'Susan', 'Sanders', 'ISM6562', 93);
 

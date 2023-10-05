@@ -1,0 +1,13 @@
+user_id,t_date,t_file,file
+1,'2 Aug','Audio','audiofile.mp3'
+2,'3 Aug','Text','attachment.txt'
+3,'2 Aug','Image','imagefile.img'
+4,'5 May','Audio','audiofile.mp3'
+5,'12 Feb','Text','attachment.txt'
+6,'2 Dec','Image','imagefile.img'
+7,'21 Aug','Audio','audiofile.mp3'
+8,'22 Jan','Text','attachment.txt'
+9,'2 Aug','Image','imagefile.img'
+10,'3 May','Audio','audiofile.mp3'
+11,'24 Jun','Text','attachment.txt'
+12,'12 Sep','Image','imagefile.img'

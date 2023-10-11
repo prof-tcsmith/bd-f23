@@ -4,7 +4,7 @@ services:
 
   cloudera:
     image: cloudera/quickstart:latest
-    container_name: quickstart.cloudera
+    container_name: Cloudera
     hostname: quickstart.cloudera
     privileged: true
 #    command: /bin/bash

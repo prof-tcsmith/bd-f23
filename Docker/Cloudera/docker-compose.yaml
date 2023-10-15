@@ -5,18 +5,20 @@ services:
   cloudera:
     image: cloudera/quickstart:latest
     container_name: Cloudera
-    privileged: true
     hostname: quickstart.cloudera
-    command: /usr/bin/docker-quickstart
+    privileged: true
+#    command: /bin/bash
+    command: /usr/bin/docker-quickstart 
+#    command: "/home/cloudera/clouder-manager --express"
     stdin_open: true # keep process stdin open awaiting connect (keeps cloudera running)
     tty: true # specifies that stdin should be a terminal
     mem_limit: "30g"
     mem_reservation: "20g"
-    cpus: "8"
+    cpus: "16"
     ports:
       - 80:80       # quickstart
       - 8020:8020   # HDFS 
-      - 22:22       # SSH
+      - 2222:2222       # SSH
       - 7180:7180   # Cloudera Manager
       - 8888:8888   # Hue
       - 11000:11000 # Oozie
@@ -36,4 +38,8 @@ services:
       - 7077:7077   # Spark Master
 
     volumes: 
-      - ./data:/home/cloudera/workspace/dev01
+      - ./var_lib:/var/lib
+      - ./data:/home/cloudera/DEV01
+
+#      - ./data/tmp:/tmp
+#      - ./data/hdfs:/var/lib/hadoop-hdfs/cache

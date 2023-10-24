@@ -1,0 +1,7 @@
+Docker/Cloudera/data/
+Docker/Cloudera/var_lib/
+Cassandra/cassandra-node-1
+Cassandra/cassandra-node-2
+Cassandra/cassandra-node-3
+.VSCode
+

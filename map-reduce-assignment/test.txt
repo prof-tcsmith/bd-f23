@@ -1,0 +1,21 @@
+Below are fruit price list in INR:
+979 758: cherry
+263, 253: banana
+248: elderberry
+537: apple
+751, 672, 956: apple
+779: date
+577: elderberry
+360: apple
+687: cherry
+225: date
+266: elderberry
+244: date
+694: cherry
+396: banana
+945, 657: cherry
+622, : banana
+322, 782: elderberry
+609: banana
+459: banana
+837: apple

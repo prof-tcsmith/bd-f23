@@ -9,28 +9,32 @@ services:
     privileged: true
 #    command: /bin/bash
     command: /usr/bin/docker-quickstart 
-#    command: "/home/cloudera/clouder-manager --express"
+#    command: "/home/cloudera/clouder-manager --express" - only run this is you want the cloudera manager (it normally isn't required)
     stdin_open: true # keep process stdin open awaiting connect (keeps cloudera running)
     tty: true # specifies that stdin should be a terminal
-    mem_limit: "30g"
-    mem_reservation: "20g"
-    cpus: "16"
-    ports:
+    mem_limit: 30g
+    mem_reservation: 20g
+    cpus: 16
+    ports: # see port list https://docs.cloudera.com/cdp-private-cloud-base/latest/installation/topics/cdpdc-ports-used-by-runtime.html
       - 80:80       # quickstart
       - 8020:8020   # HDFS 
-      - 2222:2222       # SSH
+      - 2222:2222   # SSH
       - 7180:7180   # Cloudera Manager
       - 8888:8888   # Hue
       - 11000:11000 # Oozie
       - 50070:50070 # HDFS Rest Namenode
       - 50075:50075 # HDFS Rest Datanode
       - 2181:2181   # Zookeeper
-      - 8088:8088   # YARN Resource Manager
+      - 8032:8032   # yarn.resourcemanager.address
+      - 8033:8033   # yarn.resourcemanager.admin.address
+      - 8088:8088   # yarn.resourcemanager.webapp.address
+      - 8090:8090   # yarn.resourcemanager.webapp.https.address
+      - 8042:8042   # yarn.nodemanager.webapp.address
+      - 8044:8044   # yarn.nodemanager.webapp.https.address
       - 19888:19888 # MapReduce Job History
       - 50030:50030 # MapReduce Job Tracker
       - 8983:8983   # Solr
       - 16000:16000 # Sqoop Metastore
-      - 8042:8042   # YARN Node Manager
       - 60010:60010 # HBase Master
       - 60030:60030 # HBase Region
       - 9090:9090   # HBase Thrift
@@ -41,5 +45,3 @@ services:
       - ./var_lib:/var/lib
       - ./data:/home/cloudera/DEV01
 
-#      - ./data/tmp:/tmp
-#      - ./data/hdfs:/var/lib/hadoop-hdfs/cache

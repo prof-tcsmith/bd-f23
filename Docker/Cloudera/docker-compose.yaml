@@ -20,7 +20,7 @@ services:
       - 8020:8020   # HDFS 
       - 2222:2222   # SSH
       - 7180:7180   # Cloudera Manager
-      - 8888:8888   # Hue
+      - 8889:8888   # Hue (8888 us used by jupyter, need to avoid collision)
       - 11000:11000 # Oozie
       - 50070:50070 # HDFS Rest Namenode
       - 50075:50075 # HDFS Rest Datanode
@@ -40,6 +40,10 @@ services:
       - 9090:9090   # HBase Thrift
       - 8080:8080   # HBase Rest
       - 7077:7077   # Spark Master
+      - 9083:9083   # Metastore	
+      - 10000:10000 # HiveServer2	10000	hive.server2.thrift.port	
+      - 10002:10002 # HiveServer2 Web User Interface (UI)	
+      
 
     volumes: 
       - ./var_lib:/var/lib

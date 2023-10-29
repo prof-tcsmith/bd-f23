@@ -11,5 +11,5 @@ for line in sys.stdin:
     
     # Print each numeric value separately to stdout
     for numeric_value in numeric_values:
-        # print '%s' % numeric_value
-        print(numeric_value)
+        print '%s' % numeric_value
+        

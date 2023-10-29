@@ -20,8 +20,6 @@ for line in sys.stdin:
 # Calculate the average
 if count > 0:
     average = float(total) / count
-    # print 'AVERAGE = %.2f' % average
-    print("AVERAGE = %.2f" % average)
+    print 'AVERAGE = %.2f' % average
 else:
-    # print 'AVERAGE = No numeric values found.'
-    print("AVERAGE = No numeric values found.")
+    print 'AVERAGE = No numeric values found.'

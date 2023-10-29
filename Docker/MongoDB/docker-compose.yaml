@@ -1,0 +1,13 @@
+services:
+  mongodb:
+    container_name: mongodb
+    image: mongo:latest
+    expose:
+    - 27017
+    ports:
+    - "27017:27017"
+    volumes:
+    - ./data:/data/db
+    - ./scripts/rs-initiate.js:/docker-entrypoint-initdb.d/rs-initiate.js
+    command: ["--replSet", "dbrs", "--bind_ip_all"]
+

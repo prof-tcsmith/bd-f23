@@ -1,0 +1,14 @@
+Docker/Cloudera/data/
+Docker/Cloudera/var_lib/
+Cassandra/cassandra-node-1
+Cassandra/cassandra-node-2
+Cassandra/cassandra-node-3
+.VSCode
+metastore_db
+spark-warehouse
+spark-3.5.0-bin-hadoop3
+derby.log
+.ipynb_checkpoints
+
+
+

@@ -1,0 +1,18 @@
+[
+  {
+    "_id": "DeleteEvent",
+    "event_type_count": 2
+  },
+  {
+    "_id": "CreateEvent",
+    "event_type_count": 8
+  },
+  {
+    "_id": "PullRequestEvent",
+    "event_type_count": 2
+  },
+  {
+    "_id": "PushEvent",
+    "event_type_count": 48
+  }
+]

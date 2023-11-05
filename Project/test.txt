@@ -1,0 +1,63 @@
+# Step 1: Importing the Data
+from pyspark.sql import SparkSession
+from pyspark.sql.functions import col
+from pyspark.ml.linalg import Vectors
+from pyspark.ml.feature import StringIndexer
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+from pyspark.ml.classification import (RandomForestClassifier, 
+                                      DecisionTreeClassifier, 
+                                      NaiveBayes,
+                                      MultilayerPerceptronClassifier)
+from pyspark.ml.clustering import KMeans
+from pyspark.sql import Row
+
+# Initialize Spark session
+spark = SparkSession.builder.appName("CreditCardDefault").getOrCreate()
+
+# Load the file into a DataFrame and remove the header row
+ccRaw = spark.read.text("/Users/ashishbansal/Downloads/credit-card-default-1000.csv")
+ccRaw = ccRaw.filter(~ccRaw.value.contains("EDUCATION"))
+
+# Remove lines that are not "CSV"
+ccRaw = ccRaw.filter(~ccRaw.value.contains("aaaaaa"))
+
+# Remove double quotes from records
+ccRaw = ccRaw.withColumn("value", col("value").cast("string"))
+ccRaw = ccRaw.withColumn("value", col("value").cast("double"))
+
+# Step 2: Data Preprocessing
+# Normalize sex to 1 and 2
+ccRaw = ccRaw.withColumn("SEX", (col("SEX") == "F").cast("int"))
+
+# Calculate average billed amount, pay amount, pay duration, and percentage paid
+# Cleaned-up DataFrame
+ccDf = ...
+
+# Step 3: Data Exploration using PySpark SQL
+# Add SEX_NAME, ED_STR, and MARR_DESC to the data using SQL Joins
+# Correlation analysis
+
+# Step 4: Feature Engineering
+# Feature scaling and clustering
+
+# Step 5: Machine Learning Models
+# Prepare data for machine learning
+# Split into training and testing data
+
+# Create and evaluate Decision Trees model
+# Create and evaluate Random Forest model
+# Create and evaluate Naive Bayes model
+# Create and evaluate Multilayer Perceptron Neural Network model
+
+# Step 6: Clustering K-Means
+# Clustering using KMeans
+
+# Step 7: Rest of the Machine Learning Models
+# Additional machine learning models (Decision Trees, Random Forest, Naive Bayes, MLP)
+
+# Step 8: Model Evaluation
+# Model evaluation (accuracy, precision, recall, F1)
+
+# Step 9: Interpreting the Best Classification
+# Displaying and interpreting the best classification model
+# Displaying performance metrics

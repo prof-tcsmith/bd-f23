@@ -1,2 +1,0 @@
-export START_PERIOD="30s"
-export INTERVAL="20s"

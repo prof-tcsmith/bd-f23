@@ -16,3 +16,91 @@ plt.ylabel('Frequency')
 plt.xlabel('Default Status')
 plt.xticks(rotation=45)  # Rotate x-axis labels if necessary
 plt.show()
+
+
+performance = pd.DataFrame({"model": [], "Accuracy": [], "Precision": [], "Recall": [], "F1": []})
+y_train_pred = grid_search.predict(X_train)
+y_test_pred = grid_search.predict(X_test)
+c_matrix = confusion_matrix(y_test, y_test_pred)
+TP = c_matrix[1][1]
+TN = c_matrix[0][0]
+FP = c_matrix[0][1]
+FN = c_matrix[1][0]
+performance = pd.concat([performance, pd.DataFrame({'model':"Decision Tree", 
+                                                    'Accuracy': [(TP+TN)/(TP+TN+FP+FN)], 
+                                                    'Precision': [TP/(TP+FP)], 
+                                                    'Recall': [TP/(TP+FN)], 
+                                                    'F1': [2*TP/(2*TP+FP+FN)]
+                                                     }, index=[0])])
+
+
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+from pyspark.sql import DataFrame
+from pyspark.sql.functions import when, col, lit
+from pyspark.sql.types import FloatType
+
+# Create a Spark DataFrame to store the performance metrics
+performance_schema = ["model", "Accuracy", "Precision", "Recall", "F1"]
+performance = SpSession.createDataFrame([], schema=performance_schema)
+
+# Create the Decision Tree model
+dtClassifier = DecisionTreeClassifier(labelCol="indexed", featuresCol="features")
+dtModel = dtClassifier.fit(trainingData)
+
+# Predict on the test data
+predictions = dtModel.transform(testData)
+
+# Evaluate the model
+evaluator = MulticlassClassificationEvaluator(labelCol="indexed", predictionCol="prediction")
+accuracy = evaluator.evaluate(predictions, {evaluator.metricName: "accuracy"})
+precision = evaluator.evaluate(predictions, {evaluator.metricName: "weightedPrecision"})
+recall = evaluator.evaluate(predictions, {evaluator.metricName: "weightedRecall"})
+f1 = evaluator.evaluate(predictions, {evaluator.metricName: "f1"})
+
+# Add the performance metrics to the DataFrame
+newRow = SpSession.createDataFrame([("Decision Tree", accuracy, precision, recall, f1)], schema=performance_schema)
+performance = performance.union(newRow)
+
+# If you need to compute TP, TN, FP, FN manually:
+# Create predictions with additional columns for TP, TN, FP, FN
+predictions = predictions.withColumn('TP', when((col('indexed') == 1) & (col('prediction') == 1), 1).otherwise(0))
+predictions = predictions.withColumn('TN', when((col('indexed') == 0) & (col('prediction') == 0), 1).otherwise(0))
+predictions = predictions.withColumn('FP', when((col('indexed') == 0) & (col('prediction') == 1), 1).otherwise(0))
+predictions = predictions.withColumn('FN', when((col('indexed') == 1) & (col('prediction') == 0), 1).otherwise(0))
+
+# Compute sums of the binary evaluation columns
+metrics = predictions.groupBy().sum('TP', 'TN', 'FP', 'FN').collect()[0]
+TP = metrics['sum(TP)']
+TN = metrics['sum(TN)']
+FP = metrics['sum(FP)']
+FN = metrics['sum(FN)']
+
+# Compute metrics manually if needed
+accuracy_manual = (TP + TN) / (TP + TN + FP + FN)
+precision_manual = TP / (TP + FP) if TP + FP != 0 else 0
+recall_manual = TP / (TP + FN) if TP + FN != 0 else 0
+f1_manual = 2 * TP / (2 * TP + FP + FN) if (2 * TP + FP + FN) != 0 else 0
+
+# Show the performance DataFrame
+performance.show()
+
+
+from pyspark.sql.functions import expr
+
+# Assuming 'predictions' DataFrame has 'prediction' and 'indexed' columns
+
+# Calculate confusion matrix
+confusion_matrix = predictions.groupBy('indexed').pivot('prediction', [0, 1]).count()
+
+# Rename the columns to make it more readable
+confusion_matrix = confusion_matrix.select(
+    expr("`indexed` as True_Label"),
+    expr("`0.0` as Predicted_0"),
+    expr("`1.0` as Predicted_1")
+)
+
+# Display confusion matrix
+confusion_matrix.show()
+
+# For a large dataset, consider using the collect() method with care, as it brings all data to the driver
+# If the dataset is too large, you can instead show a few rows or use the `toPandas()` method for a Pandas representation

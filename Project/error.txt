@@ -104,3 +104,28 @@ confusion_matrix.show()
 
 # For a large dataset, consider using the collect() method with care, as it brings all data to the driver
 # If the dataset is too large, you can instead show a few rows or use the `toPandas()` method for a Pandas representation
+
+from pyspark.sql.types import StructType, StructField, StringType, FloatType
+from pyspark.sql import SparkSession
+
+# Start Spark session
+SpSession = SparkSession.builder \
+    .appName("example") \
+    .getOrCreate()
+
+# Define the schema
+performance_schema = StructType([
+    StructField("model", StringType(), True),
+    StructField("Accuracy", FloatType(), True),
+    StructField("Precision", FloatType(), True),
+    StructField("Recall", FloatType(), True),
+    StructField("F1", FloatType(), True)
+])
+
+# Create an empty DataFrame with the defined schema
+performance = SpSession.createDataFrame([], schema=performance_schema)
+
+# Show the DataFrame structure
+performance.printSchema()
+
+# This will print out the schema of the DataFrame as specified

@@ -20,7 +20,7 @@ services:
       - 8020:8020   # HDFS 
       - 2222:2222   # SSH
       - 7180:7180   # Cloudera Manager
-      - 8889:8888   # Hue (8888 us used by jupyter, need to avoid collision)
+      - 8888:8888   # Hue (8888 us used by jupyter, need to avoid collision)
       - 11000:11000 # Oozie
       - 50070:50070 # HDFS Rest Namenode
       - 50075:50075 # HDFS Rest Datanode

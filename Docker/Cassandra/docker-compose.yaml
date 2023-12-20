@@ -1,0 +1,118 @@
+version: "3.3"
+# NOTE: start_period and interval are set in the docker-compose.env file located in this
+# folder. This is to allow time for one Cassandra node to start before the next one
+# in the sequence. This help avoid the ring being bifurcated due to conflicts when 
+# two nodes start at the same time.
+
+networks:
+  cassandra-net:
+    driver: bridge
+
+services:
+
+  cassandra-1:
+    image: "cassandra:latest"  # cassandra:4.1.3
+    container_name: "cassandra-1"
+    privileged: true
+    ports:
+      - 7000:7000
+      - 9042:9042
+    networks:
+      - cassandra-net
+    environment:
+      - CASSANDRA_START_RPC=true       # default
+      - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
+      - CASSANDRA_LISTEN_ADDRESS=auto  # default, use IP addr of container # = CASSANDRA_BROADCAST_ADDRESS
+      - CASSANDRA_CLUSTER_NAME=USF-BigData-Cluster
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=my-ism6562-datacenter
+      - CASSANDRA_SEEDS=cassandra-1, cassandra-2, cassandra-3
+      - HEAP_NEWSIZE=256M
+      - MAX_HEAP_SIZE=1024M
+    volumes:
+      - ./data1:/data1
+      - ./cassandra-node-1:/var/lib/cassandra:rw
+    restart: 
+      on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status"]
+      interval: ${INTERVAL}
+      start_period: ${START_PERIOD}
+      timeout: ${TIMEOUT}
+      retries: ${RETRIES}
+
+  cassandra-2:
+    image: "cassandra:latest"  # cassandra:4.1.3
+    container_name: "cassandra-2"
+    privileged: true
+    ports:
+      - 9043:9042
+    networks:
+      - cassandra-net
+    environment:
+      - CASSANDRA_START_RPC=true       # default
+      - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
+      - CASSANDRA_LISTEN_ADDRESS=auto  # default, use IP addr of container # = CASSANDRA_BROADCAST_ADDRESS
+      - CASSANDRA_CLUSTER_NAME=USF-BigData-Cluster
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=my-ism6562-datacenter
+      - CASSANDRA_SEEDS=cassandra-1, cassandra-2, cassandra-3
+      - HEAP_NEWSIZE=256M
+      - MAX_HEAP_SIZE=1024M
+    depends_on:
+      cassandra-1:
+        condition: service_healthy
+    volumes:
+      - ./data1:/data1
+      - ./cassandra-node-2:/var/lib/cassandra:rw
+    restart: 
+      on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status"]
+      interval: ${INTERVAL}
+      start_period: ${START_PERIOD}
+      timeout: ${TIMEOUT}
+      retries: ${RETRIES}
+
+  cassandra-3:
+    image: "cassandra:latest"  # cassandra:4.1.3
+    container_name: "cassandra-3"
+    privileged: true
+    ports:
+      - 9044:9042
+    networks:
+      - cassandra-net
+    environment:
+      - CASSANDRA_START_RPC=true       # default
+      - CASSANDRA_RPC_ADDRESS=0.0.0.0  # default
+      - CASSANDRA_LISTEN_ADDRESS=auto  # default, use IP addr of container # = CASSANDRA_BROADCAST_ADDRESS
+      - CASSANDRA_CLUSTER_NAME=USF-BigData-Cluster
+      - CASSANDRA_ENDPOINT_SNITCH=GossipingPropertyFileSnitch
+      - CASSANDRA_DC=my-ism6562-datacenter
+      - CASSANDRA_SEEDS=cassandra-1, cassandra-2, cassandra-3
+      - HEAP_NEWSIZE=256M
+      - MAX_HEAP_SIZE=1024M
+    depends_on:
+      cassandra-2:
+        condition: service_healthy
+    volumes:
+      - ./data3:/data3
+      - ./cassandra-node-3:/var/lib/cassandra:rw
+    restart: 
+      on-failure
+    healthcheck:
+      test: ["CMD-SHELL", "nodetool status"]
+      interval: ${INTERVAL}
+      start_period: ${START_PERIOD}
+      timeout: ${TIMEOUT}
+      retries: ${RETRIES}
+
+
+volumes:
+  data1:
+  data2:
+  data3:
+  cassandra-node-1:
+  cassandra-node-2:
+  cassandra-node-3:
+  
